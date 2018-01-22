@@ -1,9 +1,9 @@
 {
 {% if consul_is_ui == true %}
   {% if consul_version | version_compare('0.6.1', '<') %}
-    "ui_dir": "{{ consul_ui_dir }}",
+  "ui_dir": "{{ consul_ui_dir }}",
   {% else %}
-    "ui": true,
+  "ui": true,
   {% endif %}
 {% endif %}
 {% if consul_join_at_start is defined and consul_join_at_start %}
@@ -149,7 +149,7 @@
     "disable_hostname": {{ "true" if consul_telemetry_disable_hostname else "false" }}
   },
 {% endif %}
-{% if consul_cors_support is defined %}
+{% if consul_cors_support == true %}
   "http_api_response_headers": {
         "Access-Control-Allow-Origin": "*"
   },
@@ -160,5 +160,4 @@
   "rejoin_after_leave": {{ "true" if consul_rejoin_after_leave else "false" }},
   "leave_on_terminate": {{ "true" if consul_leave_on_terminate else "false" }},
   "disable_update_check": {{ "true" if consul_disable_update_check else "false" }}
-
 }
